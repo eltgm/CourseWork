@@ -56,14 +56,26 @@ void application::build_tree_utilities() {
     cin >> name;
     game.set_username(name);
 
-    cout << "Сколько попыток?\n";
-    cin >> lives;
+    bool flag = false;
+    while (!flag) {
+        cout << "Сколько попыток?\n";
+        cin >> lives;
+
+        flag = is_number(lives);
+    }
+
     game.set_lives(stoi(lives));
 
     cout << "Как играть:\n"
             "После появления специального сообщения, введите 1(ровно 1!) символ кириллицы. Дождитесь результата.";
 
     game.load_strings();
+}
+
+bool application::is_number(const std::string &s) {
+    std::string::const_iterator it = s.begin();
+    while (it != s.end() && std::isdigit(*it)) ++it;
+    return !s.empty() && it == s.end();
 }
 
 int application::start_game() {

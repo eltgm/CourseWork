@@ -18,6 +18,7 @@ public:
 
     int start_game();
 
+    bool is_number(const std::string &s);
 private:
     game game;
 
