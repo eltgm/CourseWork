@@ -3,7 +3,6 @@
 //
 
 #include "../headers/game.h"
-#include<cstdlib>
 #include<ctime>
 void game::set_username(string username) {
     this->username = username;
@@ -14,17 +13,19 @@ void game::set_lives(int lives) {
 }
 
 bool game::check_char(char susp) {
-    int char_pos = full_string.find(susp);
-
-    if (char_pos == -1) {
-        lives--;
-        return false;
-    } else {
-        full_string[char_pos] = '0';
-        user_string[char_pos] = susp;
-
-        return true;
+    bool find = false;
+    for (int i = 0; i < full_string.length(); ++i) {
+        if (full_string[i] == susp) {
+            full_string[i] = '0';
+            user_string[i] = susp;
+            find = true;
+        }
     }
+
+    if (!find)
+        lives--;
+
+    return find;
 }
 
 string game::get_user_string() {
@@ -50,8 +51,8 @@ void game::load_strings() {
 void game::set_full_string() {
     srand(time(NULL));
 
-    this->full_string = strings.at(rand() % 1000 + 1);
-
+    this->full_string = strings.at(rand() % strings.size() - 1 + 1);
+    this->conceived_string = this->full_string;
     for (int i = 0; i < full_string.length(); ++i) {
         this->user_string.push_back('?');
     }
@@ -64,5 +65,9 @@ bool game::end_game() {
     }
 
     return true;
+}
+
+string game::get_conceived_string() {
+    return this->conceived_string;
 }
 

@@ -11,7 +11,7 @@
 
 class file_reader : public base {
 public:
-    const string FILE_PATH = "../strings.txt";
+    const string FILE_PATH = "strings.txt";
 
     vector<string> get_strings();
 };

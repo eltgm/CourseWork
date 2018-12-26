@@ -27,6 +27,8 @@ public:
 
     string get_full_string();
 
+    string get_conceived_string();
+
     void set_full_string();
 
     bool end_game();
@@ -35,6 +37,8 @@ private:
     int lives = 8;
 
     vector<string> strings;
+
+    string conceived_string;
 
     string full_string;
 

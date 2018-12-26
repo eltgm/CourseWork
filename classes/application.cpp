@@ -50,7 +50,7 @@ void application::build_tree_utilities() {
     cout << HELLO;
 
     string name;
-    string lives;
+    string lives = "abc";
 
     cout << "Представьтесь, пожалуйста!\n";
     cin >> name;
@@ -85,6 +85,7 @@ int application::start_game() {
         screen_updater.update_state(game.get_username(), game.get_user_string(), game.get_lives());
         if (game.get_lives() <= 0) {
             cout << "Вы проиграли, но в скрижалях «Поля Чудес» вы навсегда остаетесь победителем!\n\n";
+            cout << "Загаданное слово - " << game.get_conceived_string() << "\n";
             system("pause");
             return -1;
         }
@@ -96,6 +97,7 @@ int application::start_game() {
         if (ch == '0') {
             cout
                     << "С вами мы прощаемся ровно на одну неделю. Желаем удачи хотя бы на эти коротенькие семь дней. Дай вам Бог.";
+            cout << "Загаданное слово - " << game.get_conceived_string() << "\n";
             return 0;
         }
 
